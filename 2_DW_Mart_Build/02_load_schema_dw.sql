@@ -54,3 +54,25 @@ where skill_id in(select skill_id from skills_dim);
 
 select 'Table 4 inserted Successfully';
 
+
+select 'company_dim' as table_name,count(*) as record_count from company_dim
+union all
+select 'skills_dim',count(*) from skills_dim 
+union all
+select 'job_postings_fact',count(*) from job_postings_fact
+union all
+select 'skills_job_dim', count(*) from skills_job_dim;
+
+select '===Company_dimension_sample===' as info;
+select * from company_dim limit 5;
+
+select '===skills job dimension sample===' as info;
+select * from skills_job_dim limit 5;
+
+select '===Skills dimension sample===' as info;
+select * from skills_dim limit 5;
+
+select '===Job_Postings_fact_sample===' as info;
+select * from job_postings_fact limit 5;
+
+

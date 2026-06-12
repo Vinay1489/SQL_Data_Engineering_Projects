@@ -97,11 +97,11 @@ insert(
 values(
 src.job_id,
 src.job_title_short,
-src.company_name as company_name,
+src.company_name ,
 src.job_posted_date,
 src.salary_year_avg,
 src.priority_lvl,
-current_timestamp as updated_at
+current_timestamp 
 )
 
 when not matched by source then DELETE;

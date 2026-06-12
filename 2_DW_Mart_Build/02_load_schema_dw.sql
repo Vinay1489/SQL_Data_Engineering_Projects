@@ -1,24 +1,24 @@
 --Step 2: DW- Loadt data from csv files into tables
 
-select '===Loading table 1 info---' as info;
+select '===Loading company_dim table info===' as info;
 
 insert into company_dim(company_id,name)
 select company_id,name
 from read_csv('https://storage.googleapis.com/sql_de/company_dim.csv',
 auto_detect=true);
 
-select 'Table 1 inserted Successfully';
+select 'company_dim table values inserted Successfully';
 
-select '===Loading table 2 info===' as info;
+select '===Loading skills_dim table info===' as info;
 
 insert into skills_dim(skill_id,skills,type)
 select skill_id,skills,type
 from read_csv('https://storage.googleapis.com/sql_de/skills_dim.csv',
 auto_detect=true);
 
-select 'Table 2 inserted Successfully';
+select 'skills_dim table values inserted Successfully';
 
-select '===Loading table 3 info===' as info;
+select '===Loading Job_Postings_fact table info===' as info;
 
 insert into job_postings_fact(
     job_id  ,
@@ -42,9 +42,9 @@ select *
 from read_csv('https://storage.googleapis.com/sql_de/job_postings_fact.csv',
 auto_detect=true);
 
-select 'Table 3 inserted Successfully';
+select 'Job_Postings_fact table values inserted Successfully';
 
-select '===Loading table 4 info===' as info;
+select '===Loading Skills_Job_dim table info===' as info;
 
 insert into skills_job_dim(skill_id,job_id)
 select skill_id ,job_id
@@ -52,7 +52,7 @@ from read_csv('https://storage.googleapis.com/sql_de/skills_job_dim.csv',
 auto_detect=true)
 where skill_id in(select skill_id from skills_dim);
 
-select 'Table 4 inserted Successfully';
+select 'Skills_Job_dim table values inserted Successfully';
 
 
 select 'company_dim' as table_name,count(*) as record_count from company_dim
